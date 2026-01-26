@@ -1,6 +1,6 @@
 import socket
 
-Host = input("Enter Host IP Address: ")
+Host = "127.0.0.1"
 Port = 8888
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
