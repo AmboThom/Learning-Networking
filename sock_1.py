@@ -15,3 +15,8 @@ except socket.error as e:
 sock.listen(5)
 connection, address = sock.accept()
 print(f"Got connection from: {address}")
+
+data = connection.recv(1024)
+connection.send(data)
+
+print(f"Server Got: {data.decode()}")
