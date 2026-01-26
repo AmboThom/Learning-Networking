@@ -11,3 +11,7 @@ try:
     print(f"Address: {Host}, Port: {Port}")
 except socket.error as e:
     print("Socket error: ", e)
+
+sock.listen(5)
+connection, address = sock.accept()
+print(f"Got connection from: {address}")
