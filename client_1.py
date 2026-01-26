@@ -8,4 +8,4 @@ test = "612 Walf Aveune"
 client.send(test.encode())
 data = client.recv(1024)
 
-print(f"Client Got: {data.decode()}")
+print(f"Client Got: {data.decode()}\n")
