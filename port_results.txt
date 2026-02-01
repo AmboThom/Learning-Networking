@@ -1,0 +1,27 @@
+example.com : 104.18.26.120 : 5028
+The socket timed out.
+example.com : 104.18.27.120 : 7432
+The socket timed out.
+example.com : 104.18.27.120 : 80
+This socket is open.
+example.com : 104.18.26.120 : 8742
+The socket timed out.
+example.com : 104.18.27.120 : 2387
+The socket timed out.
+example.com : 104.18.27.120 : 5028
+The socket timed out.
+google.com : 142.250.64.78 : 763
+The socket timed out.
+
+google.com : 142.250.64.78 : 8736
+The socket timed out.
+
+google.com : 142.250.64.78 : 29875
+The socket timed out.
+
+google.com : 142.250.64.78 : 874
+The socket timed out.
+
+google.com : 142.250.64.78 : 7390
+The socket timed out.
+
