@@ -58,6 +58,7 @@ def check_port(website, port):
     try:
         s.connect((ip, port))
         message = "This socket is open."
+# TODO: Save state of port in each try/except
         print(message)
     except socket.timeout:
         message = "The socket timed out."
@@ -70,6 +71,13 @@ def check_port(website, port):
         print(message)
     except Execption as e:
         return print(f"The error that occurred is: {e}")
+# TODO: Finally will write the save results
+
+def save_results(website, ip, port, message):
+    with open('port_results.txt', 'a', newline = '\n') as file:
+        file.writelines(website + " : " + ip + " : " + str(port) + "\n" + message + "\n\n")
+
+# TODO: Write header for results file
 
 threads = []
 for p in ports:
