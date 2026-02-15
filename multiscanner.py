@@ -51,33 +51,45 @@ ports = [int(p) for p in input("Enter 3 ports you would like to check, seperated
 
 def check_port(website, port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
+    status = True
     ip = socket.gethostbyname(website)
     s.settimeout(5)
 
     try:
         s.connect((ip, port))
-        message = "This socket is open."
+        # message = "This socket is open."
 # TODO: Save state of port in each try/except
-        print(message)
+        status = True
     except socket.timeout:
-        message = "The socket timed out."
-        print(message)
+        # message = "The socket timed out"
+        status = False
     except OSError:
-        message = "There's an error from the OS."
-        print(message)
+        # message = "There's an error from the OS."
+        status = False
     except socket.gaierror:
-        message = "Couldn't find the hostname."
-        print(message)
+        # message = "Couldn't find the hostname."
+        status = False
     except Execption as e:
-        return print(f"The error that occurred is: {e}")
+        # return print(f"The error that occurred is: {e}")
+        status = False
 # TODO: Finally will write the save results
+    finally:
+        if status == True:
+            message = "OPEN"
+        else:
+            message = "CLOSED"
+
+        save_results(website, ip, port, message)
+
+        print("All Ports Closed.")
 
 def save_results(website, ip, port, message):
-    with open('port_results.txt', 'a', newline = '\n') as file:
-        file.writelines(website + " : " + ip + " : " + str(port) + "\n" + message + "\n\n")
+    with open('thread_results.txt', 'a', newline = '\n') as file:
+        file.writelines(website + " | " + ip + " | " + str(port) + " | " + message + "\n\n")
 
 # TODO: Write header for results file
+with open('thread_results.txt', 'w', newline = '\n') as file:
+    file.writelines('WEBSITE\t|\tIP\t|\tPORT\t|\tSTATUS\n\n')
 
 threads = []
 for p in ports:
