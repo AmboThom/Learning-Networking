@@ -14,36 +14,26 @@ except socket.error as e:
     print("Socket error: ", e)
 
 sock.listen(5)
-#TODO: Create while loop
+
+# Client connects to Server
 while True:
     connection, address = sock.accept()
+    # Child Process is created
     process_id = os.fork()
+    # Checks if current process is child
     if process_id == 0:
-        data = connection.recv(1024)
-        message = data.decode()
-        print(f"Received: {message}")
-        if not data:
-            break
-        connection.send(data)
+        # Keeps the connection open 
+        while True:
+            data = connection.recv(1024)
+            message = data.decode()
+            print(f"Received: {message}")
+            if not data:
+                break
+            connection.send(data)
         connection.close()
+    # Parent logs Child created
     elif process_id > 0:
         print(f"A child was born!")
     else:
         print(f"Fork Failed.")
-
-
-#TODO: Create child process
-#TODO: Have check if current process is a child or parent
-#TODO: If in child, do recv and send
-#TODO: If in parent log that child created successfully
-#TODO: If child created failed, log child failed
-
-
-#connection, address = sock.accept()
-#
-#print(f"Got connection from: {address}\n")
-
-#data = connection.recv(1024)
-#connection.send(data)
-
 print(f"Server Got: {data.decode()}\n")
